@@ -1,13 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Professeurs{% endblock %}
+{% block title %}Modifier un professeur{% endblock %}
 
 {% block body %}
-    <h1>Edit Professeurs</h1>
-
     {{ include('professeurs/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_professeurs_index') }}">back to list</a>
-
-    {{ include('professeurs/_delete_form.html.twig') }}
+    <a href="{{ path('app_professeurs_index') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-auto mb-2 ml-auto block w-fit">Retour</a>
 {% endblock %}

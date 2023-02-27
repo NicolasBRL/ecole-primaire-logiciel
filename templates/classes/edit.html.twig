@@ -1,13 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Classes{% endblock %}
+{% block title %}Modifier une classe{% endblock %}
 
 {% block body %}
-    <h1>Edit Classes</h1>
-
     {{ include('classes/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_classes_index') }}">back to list</a>
-
-    {{ include('classes/_delete_form.html.twig') }}
+    <a href="{{ path('app_classes_index') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-auto mb-2 ml-auto block w-fit">Retour</a>
 {% endblock %}

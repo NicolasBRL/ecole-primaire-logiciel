@@ -1,35 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Classes{% endblock %}
+{% block title %}{{ class.nom }}{% endblock %}
 
 {% block body %}
-    <h1>Classe: {{ class.nom }} </h1>
-    <span>ID: {{ class.id }}</span><br>
-    <span>Professeur: {{ professeur.prenom }} {{ professeur.nom }}</span>
+    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">ID: {{ class.id }}</span>
+    <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Professeur: {{ professeur.prenom }} {{ professeur.nom }}</span>
 
-    <h2>Élèves</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Date de naissance</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for eleve in eleves %}
-            <tr>
-                <td>{{ eleve.nom }}</td>
-                <td>{{ eleve.prenom }}</td>
-                <td>{{ eleve.dateNaissance ? eleve.dateNaissance|date('Y-m-d') : '' }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_classes_index') }}">back to list</a>
+    <div class="my-5">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-700 mb-4">Liste d'élèves</h2>
+        <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md my-5">
+            <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nom</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Prénom</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Date de naissance</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+                    {% for eleve in eleves %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4">{{ eleve.nom }}</td>
+                        <td class="px-6 py-4">{{ eleve.prenom }}</td>
+                        <td class="px-6 py-4">{{ eleve.dateNaissance ? eleve.dateNaissance|date('d/m/Y') : '' }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3">Aucun élève dans la classe</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="{{ path('app_classes_index') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-auto mb-2 ml-auto block w-fit">Retour</a>
 {% endblock %}

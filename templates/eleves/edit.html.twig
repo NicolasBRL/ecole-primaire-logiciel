@@ -1,13 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Eleves{% endblock %}
+{% block title %}Modifier un élève{% endblock %}
 
 {% block body %}
-    <h1>Edit Eleves</h1>
-
     {{ include('eleves/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_eleves_index') }}">back to list</a>
-
-    {{ include('eleves/_delete_form.html.twig') }}
+    
+    <a href="{{ path('app_eleves_index') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-auto mb-2 ml-auto block w-fit">Retour</a>
 {% endblock %}
+

@@ -1,37 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Classes index{% endblock %}
+{% block title %}Liste des classes{% endblock %}
 
 {% block body %}
-    <h1>Classes index</h1>
+<a href="{{ path('app_classes_new') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-auto mb-2 ml-auto block w-fit">Ajouter une classe</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Professeur</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for class in classes %}
-            <tr>
-                <td>{{ class.id }}</td>
-                <td>{{ class.nom }}</td>
-                <td>{{ class.professeur.prenom }} {{ class.professeur.nom }}</td>
-                <td>
-                    <a href="{{ path('app_classes_show', {'id': class.id}) }}">show</a>
-                    <a href="{{ path('app_classes_edit', {'id': class.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_classes_new') }}">Create new</a>
+<div class="overflow-hidden rounded-lg border border-gray-200 shadow-md my-5">
+  <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    <thead class="bg-gray-50">
+      <tr>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Id</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nom</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Professeur</th>
+        <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+      {% for class in classes %}
+      <tr class="hover:bg-gray-50">
+        <td class="px-6 py-4">{{ class.id }}</td>
+        <td class="px-6 py-4">{{ class.nom }}</td>
+        <td class="px-6 py-4">{{ class.professeur.prenom }} {{ class.professeur.nom }}</td>
+        <td class="px-6 py-4">
+          <div class="flex justify-end gap-4">
+            <a href="{{ path('app_classes_show', {'id': class.id}) }}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+
+            </a>
+            <a href="{{ path('app_classes_edit', {'id': class.id}) }}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="h-6 w-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                />
+              </svg>
+            </a>
+            {{ include('classes/_delete_form.html.twig') }}
+            
+          </div>
+        </td>
+      </tr>
+      {% else %}
+        <tr>
+          <td colspan="3">Aucune classe</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 {% endblock %}
