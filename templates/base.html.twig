@@ -14,6 +14,11 @@
         {% endblock %}
     </head>
     <body>
+        <nav>
+            <a href="{{ path('app_classes_index') }}">Classes</a>
+            <a href="{{ path('app_professeurs_index') }}">Professeurs</a>
+            <a href="{{ path('app_eleves_index') }}">Élèves</a>
+        </nav>
         {% block body %}{% endblock %}
     </body>
 </html>

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Classes{% endblock %}
+
+{% block body %}
+    <h1>Classe: {{ class.nom }} </h1>
+    <span>ID: {{ class.id }}</span><br>
+    <span>Professeur: {{ professeur.prenom }} {{ professeur.nom }}</span>
+
+    <h2>Élèves</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eleve in eleves %}
+            <tr>
+                <td>{{ eleve.nom }}</td>
+                <td>{{ eleve.prenom }}</td>
+                <td>{{ eleve.dateNaissance ? eleve.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_classes_index') }}">back to list</a>
+{% endblock %}
